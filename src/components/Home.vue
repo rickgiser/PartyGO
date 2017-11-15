@@ -4,8 +4,8 @@
       <el-amap ref="map" vid="amapDemo" :amap-manager="amapManager" :center="center" :zoom="zoom" :plugin="plugin" :events="events" class="amap-demo">
       </el-amap>
     </div>
+    <mt-button icon="back" id="back">back</mt-button>
   </div>
-
 </template>
 
 <style lang="less">
@@ -14,6 +14,12 @@
     width: 100%;
     #home_map{
       height: 100%;
+    }
+    #back{
+      position: absolute;
+      top:10px;
+      left: 10px;
+      z-index: 999;
     }
   }
 </style>
