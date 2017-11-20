@@ -4,7 +4,11 @@
       <el-amap ref="map" vid="amapDemo" :amap-manager="amapManager" :center="center" :zoom="zoom" :plugin="plugin" :events="events" class="amap-demo">
       </el-amap>
     </div>
-    <mt-button icon="back" id="back">back</mt-button>
+    <div class="search">
+      <mt-search cancel-text="" placeholder="搜地点、查公交、找路线" class="search_input"></mt-search>
+      <mt-button size="large" type="default" class="search_button">搜索</mt-button>
+      <div id="js-result" class="search_result"></div>
+    </div>
   </div>
 </template>
 
@@ -14,12 +18,41 @@
     width: 100%;
     #home_map{
       height: 100%;
+      .amap-maptypecontrol{
+        position: absolute;
+        top:90px;
+        z-index: 999;
+      }
     }
-    #back{
+    .search{
       position: absolute;
-      top:10px;
-      left: 10px;
-      z-index: 999;
+      top: 15px;
+      left: 15px;
+      z-index:999;
+      width:330px;
+      .search_input{
+        position: absolute;
+        width:270px;
+      }
+      .search_button{
+        font-size:15px;
+        position: absolute;
+        width: 76px;
+        border-top:8px #d9d9d9 solid;
+        border-right:8px #d9d9d9 solid;
+        border-bottom:8px #d9d9d9 solid;
+        border-left:2px #d9d9d9 solid;
+        float: left;
+        left:250px;
+        z-index:1000;
+        height:52px;
+        background-color: white;
+      }
+      .search_result{
+        max-height: 300px; 
+        overflow: auto; 
+        margin-top: 10px;
+      }
     }
   }
 </style>
