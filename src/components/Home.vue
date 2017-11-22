@@ -5,8 +5,11 @@
       </el-amap>
     </div>
     <div class="search">
-      <mt-search cancel-text="" placeholder="搜地点、查公交、找路线" class="search_input"></mt-search>
-      <mt-button size="large" type="default" class="search_button">搜索</mt-button>
+      <input placeholder="搜地点、查公交、找路线" class="search_input"></input>
+      <img src="../assets/defavatar.png" alt="" class="search_img">
+      <span class="search_button">
+      <i class="fa fa-search fa-lg" aria-hidden="true"></i> 
+      </span>
       <div id="js-result" class="search_result"></div>
     </div>
   </div>
@@ -32,21 +35,34 @@
       width:330px;
       .search_input{
         position: absolute;
-        width:270px;
+        width:292px;
+        height:35px;
+        border:0px;
+        padding-left: 38px;
+        border-radius: 5px;
       }
       .search_button{
-        font-size:15px;
+        color:#ccc;
+        font-size: 15px;
         position: absolute;
-        width: 76px;
-        border-top:8px #d9d9d9 solid;
-        border-right:8px #d9d9d9 solid;
-        border-bottom:8px #d9d9d9 solid;
-        border-left:2px #d9d9d9 solid;
+        width: 24px;
         float: left;
-        left:250px;
-        z-index:1000;
-        height:52px;
-        background-color: white;
+        left: 301px;
+        z-index: 1000;
+        height: 24px;
+        top: 7px;
+      }
+      .search_button:hover{
+        color:blue;
+      }
+      .search_img{
+        position: absolute;
+        float: left;
+        z-index: 1000;
+        width:28px;
+        height:28px;
+        top: 4px;
+        left: 4px;
       }
       .search_result{
         max-height: 300px; 
@@ -80,7 +96,7 @@
           'zoomchange': () => {
           },
           'click': (e) => {
-            alert('map clicked');
+            // alert('map clicked');
           }
         },
         plugin: ['ToolBar', {
