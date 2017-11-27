@@ -5,11 +5,9 @@
       </el-amap>
     </div>
     <div class="search">
-      <input placeholder="搜地点、查公交、找路线" class="search_input"></input>
+      <input type="text" placeholder="搜地点、查公交、找路线" class="search_input"></input>
       <img src="../assets/defavatar.png" alt="" class="search_img">
-      <span class="search_button">
-      <i class="fa fa-search fa-lg" aria-hidden="true"></i> 
-      </span>
+      <span class="search_button"><i class="fa fa-search fa-lg" aria-hidden="true"></i></span>
       <div id="js-result" class="search_result"></div>
     </div>
   </div>
