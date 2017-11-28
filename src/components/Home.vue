@@ -10,67 +10,6 @@
   </div>
 </template>
 
-<style lang="less">
-  #home{
-    height: 100%;
-    width: 100%;
-    #home_map{
-      height: 100%;
-      .amap-maptypecontrol{
-        position: absolute;
-        top:90px;
-        z-index: 999;
-      }
-    }
-    .search{
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      z-index:999;
-      width:330px;
-      .search_input{
-        position: absolute;
-        width:292px;
-        height:35px;
-        border:0px;
-        padding-left: 38px;
-        border-radius: 5px;
-      }
-      .search_button{
-        color:#ccc;
-        font-size: 15px;
-        position: absolute;
-        width: 24px;
-        float: left;
-        left: 301px;
-        z-index: 1000;
-        height: 24px;
-        top: 7px;
-      }
-      .search_button:hover{
-        color:blue;
-      }
-      .search_img{
-        position: absolute;
-        float: left;
-        z-index: 1000;
-        width:28px;
-        height:28px;
-        top: 4px;
-        left: 4px;
-      }
-      .search_result{
-        max-height: 300px; 
-        overflow: auto; 
-        margin-top: 37px;
-      }
-    }
-    .map{
-      height:100%;
-    }
-  }
-</style>
-
 
 <script>
 import remoteLoad from '@/utils/remoteLoad.js'
@@ -97,7 +36,7 @@ export default {
     // 搜索
     handleSearch () {
       if (this.searchKey) {
-        this.placeSearch.search(this.searchKey)
+        this.placeSearch.search(this.searchKey)    //placeSearch.search  调用查询方法
       }
     },
     // 实例化地图
@@ -125,12 +64,19 @@ export default {
             panel: 'js-result'
           })
         })
-        // 启用工具条
-        AMap.plugin(['AMap.ToolBar'], function () {
-          map.addControl(new AMap.ToolBar({
-            position: 'RB'
-          }))
-        })
+        // 添加地图控件
+        AMap.plugin(['AMap.ToolBar','AMap.Scale','AMap.OverView','AMap.Geolocation','AMap.MapType'],
+        function(){
+          map.addControl(new AMap.ToolBar());
+
+          map.addControl(new AMap.Scale());
+
+          map.addControl(new AMap.Geolocation());
+
+          map.addControl(new AMap.MapType());
+
+          map.addControl(new AMap.OverView({isOpen:false}));
+        });
         // 创建地图拖拽
         let positionPicker = new PositionPicker({
           mode: 'dragMap', // 设定为拖拽地图模式，可选'dragMap'、'dragMarker'，默认为'dragMap'
@@ -163,3 +109,73 @@ export default {
   }
 }
 </script>
+
+
+<style lang="less">
+  #home{
+    height: 100%;
+    width: 100%;
+    #home_map{
+      height: 100%;
+      .amap-maptypecontrol{
+        position: absolute;
+        top:90px;
+        z-index: 999;
+      }
+    }
+    .search{
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      z-index:999;
+      width:330px;
+      .search_input{
+        position: absolute;
+        width:292px;
+        height:40px;
+        border:0px;
+        padding-left: 38px;
+        border-radius: 5px;
+      }
+      .search_button{
+        color:#ccc;
+        font-size: 15px;
+        position: absolute;
+        width: 24px;
+        float: left;
+        left: 301px;
+        z-index: 1000;
+        height: 24px;
+        top: 10px;
+      }
+      .search_button:hover{
+        color:blue;
+      }
+      .search_img{
+        position: absolute;
+        float: left;
+        z-index: 1000;
+        width:28px;
+        height:28px;
+        top: 7px;
+        left: 4px;
+      }
+      .search_result{
+        max-height: 300px; 
+        overflow: auto; 
+        margin-top: 42px;
+      }
+    }
+    .map{
+      height:100%;
+      .amap-controls{
+        .amap-geolocation-con{
+          bottom:40px;
+        }
+        .amap-maptypecontrol{
+          top:80px;
+        }
+      }
+    }
+  }
+</style>
