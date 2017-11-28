@@ -76,6 +76,10 @@ export default {
           map.addControl(new AMap.MapType());
 
           map.addControl(new AMap.OverView({isOpen:false}));
+
+          document.getElementsByClassName("amap-geolocation-con")[0].style.bottom = "40px";
+          document.getElementsByClassName("amap-zoomcontrol")[0].style.bottom = "80px";
+          
         });
         // 创建地图拖拽
         let positionPicker = new PositionPicker({

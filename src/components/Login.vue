@@ -2,7 +2,7 @@
   <div class="login">
       <div class="login-top">
           <span class="passworldLogin">密码登陆</span>
-          <span class="split"></span>
+          <span class="split">|</span>
           <span class="messageLogin">短信登陆</span>
       </div>
       <div class="login-input">
@@ -60,6 +60,7 @@ export default {
 
 <style lang="less">
     .login{
+        position: relative;
         width: 80%;
         height: 50%;
         border: 1px solid red;
@@ -68,6 +69,10 @@ export default {
         left: 10%;
         font-size: 15px;
         color: #90a4ae;
+        .login-top span{
+            margin-top:10px;
+            margin-left:10px;
+        }
     }
 </style>
 
