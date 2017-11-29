@@ -54,6 +54,7 @@
 </template>
 <script>
 export default {
+  name:"login",
   data(){
       return {
 
@@ -61,16 +62,18 @@ export default {
   },
   methods:{
       mesLoad (){
-          document.getElementsByClassName("login-passworld").style.display = "none";
-          document.getElementsByClassName("login-message").style.display = "block";
-          document.getElementsByClassName("login-message").style.color = "#42a5f5";
-          document.getElementsByClassName("login-passworld").style.color = "#90a4ae";
+        $(".login-passworld").css({"display":"none"});
+        $(".login-message").css({"display":"block"});
+        $(".passworldLogin").css({"color":"#90a4ae"});
+        $(".messageLogin").css({"color":"#42a5f5"});
+        $(".login-footer").css({"display":"none"});
       },
       pasLoad (){
-          document.getElementsByClassName("login-message").style.display = "none";
-          document.getElementsByClassName("login-message").style.color = "#90a4ae";
-          document.getElementsByClassName("login-passworld").style.display = "block";
-          document.getElementsByClassName("login-passworld").style.color = "#42a5f5";
+        $(".login-passworld").css({"display":"block","color":"#90a4ae"});
+        $(".login-message").css({"display":"none","color":"#42a5f5"});
+        $(".passworldLogin").css({"color":"#42a5f5"});
+        $(".messageLogin").css({"color":"#90a4ae"});
+        $(".login-footer").css({"display":"block"});
       }
   }
 }
@@ -92,11 +95,13 @@ export default {
             width:100%;
             margin-top:20px;
             padding-left:5px;
-            // border: 1px solid red;
             line-height: 30px;
+            .passworldLogin{
+                color:#42a5f5;
+            }
             span{
-            padding-left:10px;
-        }
+                margin-left:10px;
+            }
         }
         .login-input{
             height:30%;
