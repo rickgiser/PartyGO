@@ -2,7 +2,7 @@
   <div id="home" class="m-map" >
     <div class="search" v-if="placeSearch">
       <input type="text" placeholder="搜地点、查公交、找路线" class="search_input" v-model="searchKey"></input>
-      <a href="./login"><img class="search_img" src="../assets/defavatar.png" alt=""></a>
+      <a ><router-link to="./login"><img class="search_img" src="../assets/defavatar.png" alt=""></router-link></a>
       <span class="search_button" @click="handleSearch"><i class="fa fa-search fa-lg" aria-hidden="true"></i></span>
       <div id="js-result" class="search_result" v-show="searchKey"></div>
     </div>
