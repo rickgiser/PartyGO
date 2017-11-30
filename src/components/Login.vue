@@ -46,10 +46,10 @@
           </div>
           <div class="link">
               <a href="">忘记密码</a>
-              <a href="">免费注册</a>
+              <a href=""><router-link to="./login/regist">免费注册</router-link></a>
           </div>
       </div>
-      <div class="closelogin"><img src="../assets/login/close.png"></div>
+      <div class="closelogin" @click="closelogin"><img src="../assets/login/close.png"></div>
   </div>
 </template>
 <script>
@@ -74,6 +74,9 @@ export default {
         $(".passworldLogin").css({"color":"#42a5f5"});
         $(".messageLogin").css({"color":"#90a4ae"});
         $(".login-footer").css({"display":"block"});
+      },
+      closelogin (){
+        $(".login").css({"display":"none"})
       }
   }
 }
@@ -315,7 +318,7 @@ export default {
                 a{
                     color: #42a5f5;
                     font-size: 14px;
-                    margin-left:10px;
+                    margin-left:8px;
                     text-decoration: none;
                 }
             }
