@@ -52,6 +52,9 @@ export default {
       closelogin (){
         $(".regist").css({"display":"none"})
       }
+  },
+  mounted(){
+      this.createCode();
   }
 }
 </script>
