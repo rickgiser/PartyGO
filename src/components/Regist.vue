@@ -5,22 +5,23 @@
               <form action="">
                   <div class="input-name">
                       <div class="input-img"></div>
-                      <input class="username" type="text" placeholder="请输入手机号/邮箱/用户名"></input>
+                      <input class="username" type="text" placeholder="请输入手机号/邮箱/用户名" v-model="userName"></input>
                   </div>
                   <div class="input-passworld">
                       <div class="input-img"></div>
-                      <input class="passworld" type="text" placeholder="请输入密码">
+                      <input class="passworld" type="text" placeholder="请输入密码" v-model="passWorld">
                   </div>
                   <div class="input-passworld">
                       <div class="input-img"></div>
-                      <input class="passworld" type="text" placeholder="确认密码">
+                      <input class="passworld" type="text" placeholder="确认密码" v-model="passWorldAgain">
                   </div>
               </form>
           </div>
       </div>
       <div class="vali">
-          <input type="text" placeholder="验证码" class="vali-input">
-          <input type="button" id="code" @click="createCode"  class="verification1" v-model="checkCode"/>
+          <input type="text" placeholder="验证码" class="vali-input" v-model="codeNum" v-on:blur="checkLpicma">
+          <input type="button" id="code" @click="createCode"  class="verification1" v-model="checkCode" />
+          <span class="notice disapear" >请输入正确的验证码</span>
       </div>
       <div class="regist-bottom">
           <mt-button type="primary" class="registf">注册</mt-button>
@@ -33,12 +34,16 @@ export default {
   name:"regist",
   data(){
       return {
-          checkCode:''
+          checkCode:'',
+          userName:'',
+          passWorld:'',
+          passWorldAgain:'',
+          codeNum:''
       }
   },
   methods:{
-      // 图片验证码
-      createCode(){
+      // 图片验证码生成
+      createCode (){
           var code = "";    
           var codeLength = 4;//验证码的长度   
           var random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',   
@@ -51,6 +56,28 @@ export default {
       },
       closelogin (){
         $(".regist").css({"display":"none"})
+      },
+      /* 检验验证码 */
+      checkLpicma (){
+          debugger
+          this.codeNum.toUpperCase();//取得输入的验证码并转化为大写         
+          if(this.codeNum == '') {
+              $(".vali span:eq(0)").text("请输入验证码");
+              $(".vali span:eq(0)").removeClass("disappear");
+              
+             
+          }else if(this.codeNum.toUpperCase() != this.checkCode ) { //若输入的验证码与产生的验证码不一致时    
+            //   console.log( this.picLyanzhengma.toUpperCase())
+            //   console.log(code)           
+              $(".vali span:eq(0)").text("请输入正确的验证码！")
+              $(".vali span:eq(0)").removeClass("disappear");
+              this.createCode();//刷新验证码   
+              this.codeNum = '';
+          }else { 
+              //输入正确时   
+              $(".vali span:eq(0)").addClass("disappear");
+              return true;
+          } 
       }
   },
   mounted(){
@@ -149,12 +176,20 @@ export default {
                 margin-left:15px;
                 margin-top:2px;
             }
+            .notice{
+                font-size:12px;
+                margin-left:90px;
+                color:red;
+            }
+            .disapear{
+                visibility:hidden;
+            }
         }
         .registf{
             position: absolute;
             height: 40px;
             width: 90%;
-            margin-top:75px;
+            margin-top:80px;
             margin-left:15px;
             
         }
