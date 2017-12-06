@@ -37,7 +37,7 @@
           <a href="" class="sina"></a>
           <a href="" class="qq"></a>
           <!-- <button class="login-button"></button> -->
-          <mt-button class="login-button" type="primary">登陆</mt-button>
+          <mt-button class="login-button" type="primary" v-on:click="handleLogin">登陆</mt-button>
       </div>
       <div class="login-footer">
           <div class="autologin">
