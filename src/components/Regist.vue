@@ -5,15 +5,16 @@
               <form action="">
                   <div class="input-name">
                       <div class="input-img"></div>
-                      <input class="username" type="text" placeholder="请输入手机号/邮箱/用户名" v-model="userName"></input>
+                      <input class="username" id="username" type="text" placeholder="请输入手机号/邮箱/用户名" v-model="userName"></input>
                   </div>
                   <div class="input-passworld">
                       <div class="input-img"></div>
-                      <input class="passworld" type="text" placeholder="请输入密码" v-model="passWorld">
+                      <input class="passworld" type="text" placeholder="请输入密码" v-model="passWorld" id="pas1">
                   </div>
                   <div class="input-passworld">
                       <div class="input-img"></div>
-                      <input class="passworld" type="text" placeholder="确认密码" v-model="passWorldAgain">
+                      <input class="passworld" type="text" placeholder="确认密码" v-model="passWorldAgain" id="pas2">
+                      <span class="codea appear">两次输入的密码不一致！</span>
                   </div>
               </form>
           </div>
@@ -24,7 +25,7 @@
           <span class="notice disappear" >请输入正确的验证码</span>
       </div>
       <div class="regist-bottom">
-          <mt-button type="primary" class="registf">注册</mt-button>
+          <mt-button type="primary" class="registf" v-on:click="handleRegist">注册</mt-button>
       </div>
       <div class="closelogin" @click="closelogin"><img src="../assets/login/close.png"></div>
   </div>
@@ -63,11 +64,9 @@ export default {
           if(this.codeNum == '') {
               $(".vali span:eq(0)").text("请输入验证码");
               $(".vali span:eq(0)").removeClass("disappear");
-              
              
           }else if(this.codeNum.toUpperCase() != this.checkCode ) { //若输入的验证码与产生的验证码不一致时    
-            //   console.log( this.picLyanzhengma.toUpperCase())
-            //   console.log(code)           
+                      
               $(".vali span:eq(0)").text("请输入正确的验证码！")
               $(".vali span:eq(0)").removeClass("disappear");
               this.createCode();//刷新验证码   
@@ -77,6 +76,33 @@ export default {
               $(".vali span:eq(0)").addClass("disappear");
               return true;
           } 
+      },
+      handleRegist (){
+          //  判断两次输入的密码是否一致
+          if($("#pas1").val() != $("#pas2").val()){
+              $(".input-passworld span:eq(0)").removeClass("appear");
+          }else{
+              $(".input-passworld span:eq(0)").addClass("appear");
+          }
+          // ajax  方式实现注册功能
+          
+          /* if(!isUsernameValid || !isPwdValid){ //用if语句来判断当用户名或者密码有一个为false时就弹出一个消息框，并提示：请输入正确的信息。
+          alert('请输入正确的信息');
+          return;  //结束
+            } */
+            debugger
+            $.ajax({       
+            type:"post", 
+            url:"http://localhost:36742/user", 
+            data:{
+                username:$("#username").val(),  
+                password:$("#pas1").val() 
+            },
+            success:function(){
+                alert("注册成功");
+                // window.location = "login.html"; 
+            }
+        });
       }
   },
   mounted(){
@@ -145,6 +171,14 @@ export default {
                         border:0px;
                         outline: none;
                         border-bottom:1px solid #cacbcc;
+                    }
+                    .codea{
+                        font-size:12px;
+                        color:red;
+                        margin-left:80px;
+                    }
+                    .appear{
+                        visibility: hidden;
                     }
                 }
             }
