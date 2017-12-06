@@ -21,7 +21,7 @@
       <div class="vali">
           <input type="text" placeholder="验证码" class="vali-input" v-model="codeNum" v-on:blur="checkLpicma">
           <input type="button" id="code" @click="createCode"  class="verification1" v-model="checkCode" />
-          <span class="notice disapear" >请输入正确的验证码</span>
+          <span class="notice disappear" >请输入正确的验证码</span>
       </div>
       <div class="regist-bottom">
           <mt-button type="primary" class="registf">注册</mt-button>
@@ -59,7 +59,6 @@ export default {
       },
       /* 检验验证码 */
       checkLpicma (){
-          debugger
           this.codeNum.toUpperCase();//取得输入的验证码并转化为大写         
           if(this.codeNum == '') {
               $(".vali span:eq(0)").text("请输入验证码");
@@ -162,8 +161,8 @@ export default {
                 width:100px;
                 text-align: center;
                 outline: none;
-                margin-top: 2px;
-                margin-left:6px;
+                margin-top: 4px;
+                margin-left:8px;
                 font-size:16px;
             }
             .verification1{
@@ -174,14 +173,14 @@ export default {
                 width:130px;
                 outline: none;
                 margin-left:15px;
-                margin-top:2px;
+                margin-top:3px;
             }
             .notice{
                 font-size:12px;
-                margin-left:90px;
+                margin-left:-9px;
                 color:red;
             }
-            .disapear{
+            .disappear{
                 visibility:hidden;
             }
         }
