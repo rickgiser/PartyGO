@@ -37,11 +37,11 @@
           <a href="" class="sina"></a>
           <a href="" class="qq"></a>
           <!-- <button class="login-button"></button> -->
-          <mt-button class="login-button" type="primary" v-on:click="handleLogin">登陆</mt-button>
+          <mt-button class="login-button" type="primary">登陆</mt-button>
       </div>
       <div class="login-footer">
           <div class="autologin">
-              <div class="chickIcon"></div>
+              <div class="chickIcon" id="autoChange" v-on:click="autoChange"></div>
               <span>下次自动登录</span>
           </div>
           <div class="link">
@@ -57,7 +57,7 @@ export default {
   name:"login",
   data(){
       return {
-
+          flag:false
       }
   },
   methods:{
@@ -77,6 +77,17 @@ export default {
       },
       closelogin (){
         $(".login").css({"display":"none"})
+      },
+      autoChange(){
+          this.flag = !this.flag;
+          if(this.flag){
+              $("#autoChange").css({"background-position": "-0px -66px"});
+          }else{
+              $("#autoChange").css({"background-position": "-0px -84px"});
+          }
+      },
+      handleLogin (){
+          
       }
   }
 }
