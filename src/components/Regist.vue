@@ -90,17 +90,20 @@ export default {
           alert('请输入正确的信息');
           return;  //结束
             } */
-            debugger
             $.ajax({       
-            type:"post", 
+            type:"get", 
             url:"http://localhost:36742/user", 
             data:{
                 username:$("#username").val(),  
                 password:$("#pas1").val() 
             },
-            success:function(){
+            success:function(data){
+                console.log(data);
                 alert("注册成功");
                 // window.location = "login.html"; 
+            },
+            error:function(error){
+                console.log(error);
             }
         });
       }
