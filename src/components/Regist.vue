@@ -62,7 +62,7 @@ export default {
       checkLpicma (){
           this.codeNum.toUpperCase();//取得输入的验证码并转化为大写         
           if(this.codeNum == '') {
-              $(".vali span:eq(0)").text("请输入验证码");
+              $(".vali span:eq(0)").text("请输入验证码！");
               $(".vali span:eq(0)").removeClass("disappear");
              
           }else if(this.codeNum.toUpperCase() != this.checkCode ) { //若输入的验证码与产生的验证码不一致时    
@@ -194,7 +194,7 @@ export default {
             margin-top:15px;
             .vali-input{
                 float: left;
-                height: 35px;
+                height: 33px;
                 width:100px;
                 text-align: center;
                 outline: none;
@@ -206,15 +206,15 @@ export default {
                 font-size:18px;
                 // font-style:italic;
                 float: left;
-                height: 41px;
+                height: 39px;
                 width:130px;
                 outline: none;
                 margin-left:15px;
-                margin-top:3px;
+                margin-top:4px;
             }
             .notice{
                 font-size:12px;
-                margin-left:-9px;
+                margin-left:87px;
                 color:red;
             }
             .disappear{
