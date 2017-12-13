@@ -91,8 +91,8 @@ export default {
           return;  //结束
             } */
             $.ajax({       
-            type:"get", 
-            url:"http://localhost:36742/user", 
+            type:"post", 
+            url:Config.serviceURL+"/user", 
             data:{
                 username:$("#username").val(),  
                 password:$("#pas1").val() 
