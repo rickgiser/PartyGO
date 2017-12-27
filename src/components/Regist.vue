@@ -9,11 +9,11 @@
                   </div>
                   <div class="input-passworld">
                       <div class="input-img"></div>
-                      <input class="passworld" type="text" placeholder="请输入密码" v-model="passWorld" id="pas1">
+                      <input class="passworld" type="password" placeholder="请输入密码" v-model="passWorld" id="pas1">
                   </div>
                   <div class="input-passworld">
                       <div class="input-img"></div>
-                      <input class="passworld" type="text" placeholder="确认密码" v-model="passWorldAgain" id="pas2">
+                      <input class="passworld" type="password" placeholder="确认密码" v-model="passWorldAgain" id="pas2">
                       <span class="codea appear">两次输入的密码不一致！</span>
                   </div>
               </form>
@@ -78,6 +78,11 @@ export default {
           } 
       },
       handleRegist (){
+          //  判断输入的内容是否为空
+          if($("#username").val() == "" || $("#pas1").val() == "" || $("#pas2").val() == ""){
+              alert("用户名或密码不能为空！");
+              return
+          }
           //  判断两次输入的密码是否一致
           if($("#pas1").val() != $("#pas2").val()){
               $(".input-passworld span:eq(0)").removeClass("appear");
@@ -95,12 +100,21 @@ export default {
             url:Config.serviceURL+"/user", 
             data:{
                 username:$("#username").val(),  
-                password:$("#pas1").val() 
+                password:$("#pas1").val() ,
+                type:'register'
             },
-            success:function(data){
-                console.log(data);
-                alert("注册成功");
-                // window.location = "login.html"; 
+            success:(result)=>{
+                if(result.errno == 0){
+                    console.log(result.data);
+                    alert("注册成功");
+                    this.$router.replace('/');
+                    sessionStorage.setItem('user', JSON.stringify(result.data));
+                    // window.location = "login.html"; 
+                }else{
+                    alert(result.errmsg);
+                    console.log(result.errmsg);
+                }
+                
             },
             error:function(error){
                 console.log(error);
@@ -119,7 +133,7 @@ export default {
         position: relative;
         width: 80%;
         height: 50%;
-        top: 25%;
+        top: 5%;
         position: absolute;
         left: 10%;
         font-size: 15px;

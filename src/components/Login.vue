@@ -10,11 +10,11 @@
               <form action="">
                   <div class="input-name">
                       <div class="input-img"></div>
-                      <input class="username" type="text" placeholder="请输入手机号/邮箱/用户名"></input>
+                      <input id="username" class="username" type="text" placeholder="请输入手机号/邮箱/用户名"></input>
                   </div>
                   <div class="input-passworld">
                       <div class="input-img"></div>
-                      <input class="passworld" type="text" placeholder="请输入密码">
+                      <input id="password" class="passworld" type="password" placeholder="请输入密码">
                   </div>
               </form>
           </div>
@@ -37,7 +37,7 @@
           <a href="" class="sina"></a>
           <a href="" class="qq"></a>
           <!-- <button class="login-button"></button> -->
-          <mt-button class="login-button" type="primary">登陆</mt-button>
+          <mt-button class="login-button" type="primary" v-on:click="handleLogin">登陆</mt-button>
       </div>
       <div class="login-footer">
           <div class="autologin">
@@ -87,7 +87,21 @@ export default {
           }
       },
       handleLogin (){
-          
+          $.ajax({
+            type:"post",
+            url:Config.serviceURL+"/user",
+            data:{
+                username:$("#username").val(),  
+                password:$("#password").val(),
+                type:'login'
+            },
+            success:function(result){
+                console.log(result.data);
+            },
+            error:function(error){
+                console.log(error);
+            }
+          })
       }
   }
 }
@@ -98,7 +112,7 @@ export default {
         position: relative;
         width: 80%;
         height: 50%;
-        top: 25%;
+        top: 5%;
         position: absolute;
         left: 10%;
         font-size: 15px;
